@@ -1,0 +1,12 @@
+[package]
+name = "ops_derive_consts"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[features]
+default = []
+bit_ops = [ "bit_ops" ]
+iter_ops = [ "iter_ops" ]
+all = [ "bit_ops", "iter_ops" ]

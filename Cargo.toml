@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 ops_derive = { path = "./ops_derive" }
+ops_derive_consts = { path = "./ops_derive_consts" }
 
 [workspace]
-members = [ "ops_derive" ]
+members = [ "ops_derive" , "ops_derive_consts"]
