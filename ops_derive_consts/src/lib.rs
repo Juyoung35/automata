@@ -18,7 +18,7 @@ pub const DIV_OPS:      OpsBitflag = DIV | DIV_ASSIGN;
 pub const REM_OPS:      OpsBitflag = REM | REM_ASSIGN;
 pub const ARITH_OPS:    OpsBitflag = ADD_OPS | SUB_OPS | MUL_OPS | DIV_OPS | REM_OPS | NEG;
 
-#[cfg(feature("bit_ops"))]
+#[cfg(feature="bit_ops")]
 pub mod bit_ops {
     use crate::OpsBitflag;
 
@@ -46,9 +46,94 @@ pub mod bit_ops {
 
     pub const BIT_OPS:          OpsBitflag = BIT_BASIC_OPS | SHIFT_OPS;
 }
-#[cfg(feature("bit_ops"))]
+#[cfg(feature="bit_ops")]
 pub use bit_ops::*;
 
+#[cfg(feature="iter_ops")]
+pub mod iter_ops {
+    use crate::OpsBitflag;
+
+    pub const SUM:      OpsBitflag = 1 << 18;
+    pub const PRODUCT:  OpsBitflag = 1 << 19;
+
+    pub const ITER_OPS: OpsBitflag = SUM | PRODUCT;
+}
+#[cfg(feature="iter_ops")]
+pub use iter_ops::*;
+
+use syn::Ident;
+use quote::format_ident;
+
 pub fn bit_to_traits(bit: OpsBitflag) -> Vec<Ident> {
-    
+    let mut res = Vec::new();
+    if bit & ADD != 0 {
+        res.push(format_ident!("Add"));
+    }
+    pub const ADD:          OpsBitflag = 1 << 0;
+    if bit & ADD_ASSIGN != 0 {
+        res.push(format_ident!("AddAssign"));
+    }
+    if bit & SUB != 0 {
+        res.push(format_ident!("Sub"));
+    }
+    if bit & SUB_ASSIGN != 0 {
+        res.push(format_ident!("SubAssign"));
+    }
+    if bit & MUL != 0 {
+        res.push(format_ident!("Mul"));
+    }
+    if bit & MUL_ASSIGN != 0 {
+        res.push(format_ident!("MulAssign"));
+    }
+    if bit & DIV != 0 {
+        res.push(format_ident!("Div"));
+    }
+    if bit & DIV_ASSIGN != 0 {
+        res.push(format_ident!("DivAssign"));
+    }
+    if bit & REM != 0 {
+        res.push(format_ident!("Rem"));
+    }
+    if bit & REM_ASSIGN != 0 {
+        res.push(format_ident!("RemAssign"));
+    }
+    if bit & NEG != 0 {
+        res.push(format_ident!("Neg"));
+    }
+    #[cfg(feature="bit_ops")] {
+        if bit & NOT != 0 {
+            res.push(format_ident!("Not"))
+        }
+        if bit & BIT_AND != 0 {
+            res.push(format_ident!("BitAnd"))
+        }
+        if bit & BIT_AND_ASSIGN != 0 {
+            res.push(format_ident!("BitAndAssign"))
+        }
+        if bit & BIT_OR != 0 {
+            res.push(format_ident!("BitOr"))
+        }
+        if bit & BIT_OR_ASSIGN != 0 {
+            res.push(format_ident!("BitOrAssign"))
+        }
+        if bit & BIT_XOR != 0 {
+            res.push(format_ident!("BitXor"))
+        }
+        if bit & BIT_XOR_ASSIGN != 0 {
+            res.push(format_ident!("BitXorAssign"))
+        }
+        if bit & SHL != 0 {
+            res.push(format_ident!("Shl"))
+        }
+        if bit & SHL_ASSIGN != 0 {
+            res.push(format_ident!("ShlAssign"))
+        }
+        if bit & SHR != 0 {
+            res.push(format_ident!("Shr"))
+        }
+        if bit & SHR_ASSIGN != 0 {
+            res.push(format_ident!("ShrAssign"))
+        }
+    }
+    res
 }

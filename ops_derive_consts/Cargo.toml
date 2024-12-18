@@ -4,9 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+quote = "1.0.37"
+syn = "2.0.90"
 
 [features]
 default = []
-bit_ops = [ "bit_ops" ]
-iter_ops = [ "iter_ops" ]
+bit_ops = []
+iter_ops = []
 all = [ "bit_ops", "iter_ops" ]
