@@ -10,3 +10,4 @@ proc-macro = true
 darling = "0.20.10"
 quote = "1.0.37"
 syn = "2.0.90"
+ops_derive = { path = "../..ops_derive" }

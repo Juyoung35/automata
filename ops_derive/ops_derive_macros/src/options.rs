@@ -26,13 +26,21 @@ pub struct Options {
 
 #[derive(FromMeta, Debug)]
 pub struct ConvertMeta {
-    target: String,
-    from: String,
-    into: String,
+    #[darlingmap = bit_to_types]
+    target: Vec<Ident>,
+    // from: String,
+    // into: String,
+}
+
+use ops_derive::{bit_to_traits, bit_to_types};
+#[derive(FromMeta, Debug)]
+pub struct OpsSelfMeta {
+    #[darling(map = bit_to_traits)]
+    ops: Vec<Ident>,
 }
 
 #[derive(FromMeta, Debug)]
-pub struct OpsSelfMeta;
-
-#[derive(FromMeta, Debug)]
-pub struct OpsWithMeta;
+pub struct OpsWithMeta {
+    #[darling(map = bit_to_traits)]
+    ops: Vec<Ident>,
+}
