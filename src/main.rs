@@ -4,12 +4,10 @@ fn main() {
     println!("Hello, world!");
 }
 
-use ops_derive::OpsDerive;
+use ops_derive::*;
 
 // #[derive(OpsDerive)]
 // #[ops_derive(
 //     convert(())
 // )]
 // pub struct Deg(isize);
-
-use ops_derive_consts::*;
