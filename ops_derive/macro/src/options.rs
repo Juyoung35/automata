@@ -42,5 +42,12 @@ pub struct OpsSelfMeta {
 #[derive(FromMeta, Debug)]
 pub struct OpsWithMeta {
     #[darling(map = bit_to_traits)]
-    ops: Vec<Ident>,
+    ops: IdentSlice,
+}
+
+#[derive(Debug)]
+pub struct IdentSlice(Vec<Ident>);
+
+impl FromMeta for IdentSlice {
+
 }
