@@ -7,4 +7,7 @@ edition = "2021"
 darling = "0.20.10"
 quote = "1.0.37"
 syn = "2.0.90"
-ops_derive_macros
+# ops_derive_macros = { path = "./ops_derive_macros" }
+
+[workspace]
+members = [ "macro", "core" ]

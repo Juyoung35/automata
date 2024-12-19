@@ -7,4 +7,4 @@ edition = "2021"
 ops_derive = { path = "./ops_derive" }
 
 [workspace]
-members = [ "ops_derive" , "ops_derive/ops_derive_macros"]
+members = [ "ops_derive" ]
