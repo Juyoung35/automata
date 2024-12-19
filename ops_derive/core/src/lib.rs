@@ -1,5 +1,3 @@
-pub use ops_derive_macro::OpsDerive;
-
 use syn::Ident;
 use quote::format_ident;
 

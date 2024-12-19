@@ -4,6 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+darling = "0.20.10"
+quote = "1.0.37"
+syn = "2.0.90"
 
 [features]
 bit_ops = []
