@@ -1,14 +1,19 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+mod options;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+use proc_macro::TokenStream;
+use syn::DeriveInput;
+use darling::FromDeriveInput;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+#[proc_macro_derive(OpsDerive, attributes(ops_derive))]
+pub fn derive_ops_derive(input: TokenStream) -> TokenStream {
+    let ast = syn::parse_macro_input!(input as DeriveInput);
+    // println!("{ast:?}");
+    let opts = match options::Options::from_derive_input(&ast) {
+        Ok(val) => val,
+        Err(err) => {
+            return err.write_errors().into();
+        }
+    };
+    println!("{opts:?}");
+    TokenStream::new()
 }

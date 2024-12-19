@@ -1,6 +1,11 @@
 [package]
-name = "core"
+name = "ops_derive_core"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+
+[features]
+bit_ops = []
+iter_ops = []
+all = [ "bit_ops", "iter_ops" ]
